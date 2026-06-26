@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { Link, usePage } from '@inertiajs/react';
+import { BookOpen, Calendar, FileText, FolderGit2, Image, LayoutGrid, Layers, Shield, Users } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -16,14 +16,6 @@ import {
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-];
-
 const footerNavItems: NavItem[] = [
     {
         title: 'Repository',
@@ -38,6 +30,62 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
+    const { auth } = usePage().props;
+    const userRoles = (auth.user?.roles as string[]) || [];
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: 'Dashboard',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+    ];
+
+    if (userRoles.includes('super-admin')) {
+        mainNavItems.push(
+            {
+                title: 'Kelola Periode',
+                href: '#',
+                icon: Calendar,
+            },
+            {
+                title: 'Manajemen Role',
+                href: '#',
+                icon: Shield,
+            },
+        );
+    }
+
+    if (userRoles.includes('admin-psdm')) {
+        mainNavItems.push(
+            {
+                title: 'Kelola Anggota',
+                href: '#',
+                icon: Users,
+            },
+            {
+                title: 'Struktur Organisasi',
+                href: '#',
+                icon: Layers,
+            },
+        );
+    }
+
+    if (userRoles.includes('admin-kominfo')) {
+        mainNavItems.push(
+            {
+                title: 'Kelola Artikel',
+                href: '#',
+                icon: FileText,
+            },
+            {
+                title: 'Perpustakaan Media',
+                href: '#',
+                icon: Image,
+            },
+        );
+    }
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
