@@ -20,7 +20,11 @@ class RoleMiddleware
         /** @var User|null $user */
         $user = $request->user();
 
-        if (! $user || ! $user->hasRole($role)) {
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        if (! $user->hasRole($role)) {
             Inertia::flash('toast', [
                 'type' => 'error',
                 'message' => 'Akses ditolak: Anda tidak memiliki wewenang untuk mengakses halaman tersebut.',
