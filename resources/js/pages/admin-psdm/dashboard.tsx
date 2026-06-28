@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
+import { Users } from 'lucide-react';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import { dashboard } from '@/routes/admin-psdm';
-import { Users } from 'lucide-react';
 
 export default function AdminPsdmDashboard() {
     return (

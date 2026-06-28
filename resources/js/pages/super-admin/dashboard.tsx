@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
+import { Shield } from 'lucide-react';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import { dashboard } from '@/routes/super-admin';
-import { Shield } from 'lucide-react';
 
 export default function SuperAdminDashboard() {
     return (

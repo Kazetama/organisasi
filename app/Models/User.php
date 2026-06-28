@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Spatie\Permission\Contracts\Role;
 
 /**
  * @property int $id
@@ -50,7 +49,7 @@ class User extends Authenticatable
     /**
      * Check if the user has the given role.
      *
-     * @param  string|array|Role  $role
+     * @param  string|array<int, string>  $role
      * @param  string|null  $guard
      */
     public function hasRole($role, $guard = null): bool
@@ -61,10 +60,6 @@ class User extends Authenticatable
 
         if (is_string($role)) {
             return $this->role === $role;
-        }
-
-        if ($role instanceof Role) {
-            return $this->role === $role->name;
         }
 
         return false;
