@@ -36,7 +36,13 @@ class MediaFile extends Model
 
     public function url(): string
     {
-        return Storage::disk($this->disk)->url($this->path);
+        $disk = Storage::disk($this->disk);
+
+        if (method_exists($disk, 'url')) {
+            return $disk->url($this->path);
+        }
+
+        return '';
     }
 
     /**

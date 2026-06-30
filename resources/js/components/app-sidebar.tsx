@@ -20,6 +20,8 @@ import { index as categoriesIndex } from '@/actions/App/Http/Controllers/AdminKo
 import { index as mediaIndex } from '@/actions/App/Http/Controllers/AdminKominfo/MediaController';
 import { index as postsIndex } from '@/actions/App/Http/Controllers/AdminKominfo/PostController';
 import { index as tagsIndex } from '@/actions/App/Http/Controllers/AdminKominfo/TagController';
+import { index as periodsIndex } from '@/actions/App/Http/Controllers/SuperAdmin/PeriodController';
+import { index as rolesIndex } from '@/actions/App/Http/Controllers/SuperAdmin/RoleController';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -106,12 +108,12 @@ export function AppSidebar() {
         mainNavItems.push(
             {
                 title: 'Kelola Periode',
-                href: '#',
+                href: periodsIndex().url,
                 icon: Calendar,
             },
             {
                 title: 'Manajemen Role',
-                href: '#',
+                href: rolesIndex().url,
                 icon: Shield,
             },
         );
